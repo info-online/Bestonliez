@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="favicon.svg">
+<title>Apex Console — The Future of Gaming</title>
+<meta name="description" content="Apex Console delivers revolutionary gaming experiences with cutting-edge hardware, stunning 8K graphics, and the most immersive gameplay ecosystem ever created.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.menu {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.menu a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.menu a:hover {
+  color: #fff;
+}
+
+.btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.btn.ghost:hover {
+  border-color: #667eea;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+}
+
+.hero {
+  padding: 180px 40px 120px;
+  text-align: center;
+  background: radial-gradient(ellipse at top, rgba(102, 126, 234, 0.15), transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" x="0" y="0" fill="rgba(255,255,255,0.02)"/></svg>') repeat;
+  opacity: 0.5;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #667eea;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stats {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  margin-top: 80px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.section {
+  padding: 120px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 60px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin: 80px 0;
+}
+
+.console-image {
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 120px;
+  box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
+}
+
+.console-info h2 {
+  font-size: 42px;
+  margin-bottom: 24px;
+}
+
+.console-info p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 32px;
+}
+
+.specs {
+  display: grid;
+  gap: 16px;
+}
+
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.spec-icon {
+  font-size: 24px;
+}
+
+.spec-text {
+  flex: 1;
+}
+
+.spec-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.spec-value {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.games-section {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 24px;
+  padding: 80px 60px;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.game-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+}
+
+.game-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+
+.game-info {
+  padding: 20px;
+}
+
+.game-info h4 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.game-info p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cta-section {
+  text-align: center;
+  padding: 100px 40px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 24px;
+  margin: 80px 0;
+}
+
+.cta-section h2 {
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+
+.cta-section p {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-row input, textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.form-row input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.footer {
+  padding: 60px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+  
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .menu {
+    display: none;
+  }
+  
+  .section {
+    padding: 60px 20px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <img src="assets/img/logo.svg" alt="Apex Console icon">
+      <span>Apex Console</span>
+    </a>
+    <div class="menu" data-nav-menu>
+      <a href="index.html" style='opacity:1;font-weight:800'>Home</a>
+      <a href="game.html">Play Game</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="right">
+      <a class="btn ghost" data-nav-toggle>Menu</a>
+      <a class="btn" href="game.html">Play</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="badge">🚀 Launching Q2 2025</div>
+    <h1>The Ultimate Gaming Console</h1>
+    <p>Experience gaming like never before. Apex Console delivers breathtaking 8K graphics, lightning-fast load times, and the most immersive gameplay ecosystem ever created.</p>
+    <a class="btn" href="game.html">Start Playing Now</a>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">8K</div>
+        <div class="stat-label">Native Resolution</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">120fps</div>
+        <div class="stat-label">Frame Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">2TB</div>
+        <div class="stat-label">Ultra-Fast SSD</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Launch Titles</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section container">
+  <h2 class="section-title">Revolutionary Gaming Features</h2>
+  <div class="grid-3">
+    <div class="card">
+      <h3>⚡ Instant Loading</h3>
+      <p>Ultra-fast SSD technology eliminates loading screens. Jump into your games in seconds, not minutes.</p>
+    </div>
+    <div class="card">
+      <h3>🎨 Ray Tracing</h3>
+      <p>Real-time ray tracing delivers cinematic lighting, reflections, and shadows for photorealistic graphics.</p>
+    </div>
+    <div class="card">
+      <h3>🔊 3D Audio</h3>
+      <p>Immersive spatial audio puts you in the center of the action with pinpoint sound accuracy.</p>
+    </div>
+    <div class="card">
+      <h3>🌐 Cloud Gaming</h3>
+      <p>Play your entire library anywhere with seamless cloud streaming and cross-platform saves.</p>
+    </div>
+    <div class="card">
+      <h3>🎮 Adaptive Controller</h3>
+      <p>Haptic feedback and adaptive triggers provide tactile sensations for every action in-game.</p>
+    </div>
+    <div class="card">
+      <h3>♻️ Backward Compatible</h3>
+      <p>Play thousands of classic games from previous generations with enhanced performance.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="card">
+    <div class="grid-2">
+      <div>
+        <span class="badge">Featured Console</span>
+        <h2 style="margin-top: 12px;">Engineered for Excellence</h2>
+        <p>Every component of Apex Console has been meticulously designed to deliver uncompromising performance and stunning visual fidelity.</p>
+        <div class="specs">
+          <div class="spec-item">
+            <div class="spec-icon">💎</div>
+            <div class="spec-text">
+              <div class="spec-label">Graphics</div>
+              <div class="spec-value">16 TFLOPS Custom GPU</div>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-icon">🧠</div>
+            <div class="spec-text">
+              <div class="spec-label">Processor</div>
+              <div class="spec-value">8-Core Zen 4 CPU @ 4.0GHz</div>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-icon">💾</div>
+            <div class="spec-text">
+              <div class="spec-label">Memory</div>
+              <div class="spec-value">24GB GDDR6 RAM</div>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-icon">⚡</div>
+            <div class="spec-text">
+              <div class="spec-label">Storage</div>
+              <div class="spec-value">2TB NVMe SSD (Expandable)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?q=80&w=2070&auto=format&fit=crop" alt="Apex Console" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="games-section">
+    <h2 class="section-title">Exclusive Launch Titles</h2>
+    <p style="text-align: center; color: rgba(255,255,255,0.7); max-width: 700px; margin: 0 auto 40px;">Experience breathtaking worlds and unforgettable stories with our lineup of exclusive AAA titles launching alongside Apex Console.</p>
+    <div class="games-grid">
+      <div class="game-card">
+        <div class="game-image">🏆</div>
+        <div class="game-info">
+          <h4>Apex Legends: Rebirth</h4>
+          <p>The ultimate battle royale experience rebuilt from the ground up for next-gen.</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <div class="game-image">🌌</div>
+        <div class="game-info">
+          <h4>Stellar Odyssey</h4>
+          <p>Explore an infinite universe with stunning visuals and deep space exploration.</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <div class="game-image">⚔️</div>
+        <div class="game-info">
+          <h4>Shadow Warriors</h4>
+          <p>An action-packed adventure featuring breathtaking combat and epic storytelling.</p>
+        </div>
+      </div>
+      <div class="game-card">
+        <div class="game-image">🏎️</div>
+        <div class="game-info">
+          <h4>Velocity Racing Pro</h4>
+          <p>Feel every turn with haptic feedback in the most realistic racing simulator ever.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <h2 class="section-title">What Makes Apex Console Different?</h2>
+  <div class="grid-2" style="gap: 40px; margin-top: 40px;">
+    <div>
+      <h3 style="font-size: 32px; margin-bottom: 20px;">Built for the Future</h3>
+      <p style="color: rgba(255,255,255,0.7); font-size: 18px; line-height: 1.8; margin-bottom: 20px;">
+        Apex Console isn't just another gaming system—it's a complete entertainment ecosystem designed to evolve with you. Our proprietary Apex Engine delivers unprecedented performance while maintaining whisper-quiet operation.
+      </p>
+      <p style="color: rgba(255,255,255,0.7); font-size: 18px; line-height: 1.8; margin-bottom: 20px;">
+        With support for variable refresh rates up to 120Hz, AMD FreeSync Premium, and HDMI 2.1, every frame is delivered with precision. The custom-designed cooling system ensures optimal performance even during the most intense gaming sessions.
+      </p>
+      <div style="display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap;">
+        <span class="badge">Ray Tracing Enabled</span>
+        <span class="badge">4K @ 120fps</span>
+        <span class="badge">HDR Support</span>
+        <span class="badge">Dolby Atmos</span>
+      </div>
+    </div>
+    <div>
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px;">
+        <h4 style="font-size: 20px; margin-bottom: 16px; color: #667eea;">🎯 Performance Metrics</h4>
+        <div style="display: grid; gap: 16px;">
+          <div style="padding: 16px; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">GPU Power</div>
+            <div style="font-size: 24px; font-weight: 700; margin-top: 4px;">16.2 TFLOPS</div>
+          </div>
+          <div style="padding: 16px; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">Memory Bandwidth</div>
+            <div style="font-size: 24px; font-weight: 700; margin-top: 4px;">448 GB/s</div>
+          </div>
+          <div style="padding: 16px; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+            <div style="font-size: 14px; color: rgba(255,255,255,0.6);">SSD Speed</div>
+            <div style="font-size: 24px; font-weight: 700; margin-top: 4px;">7 GB/s</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-radius: 24px; padding: 80px 40px;">
+    <h2 class="section-title">Apex Plus Membership</h2>
+    <p style="text-align: center; color: rgba(255,255,255,0.7); max-width: 700px; margin: 0 auto 60px; font-size: 18px;">
+      Unlock the full potential of your Apex Console with exclusive benefits, free monthly games, and premium features.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>🎮 Monthly Games</h3>
+        <p>Get 2-4 handpicked titles every month, yours to keep forever. From indie gems to AAA blockbusters.</p>
+        <div style="margin-top: 20px; font-size: 32px; font-weight: 800; color: #667eea;">$9.99/mo</div>
+      </div>
+      <div class="card" style="border: 2px solid #667eea; position: relative;">
+        <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #667eea; padding: 4px 16px; border-radius: 12px; font-size: 12px; font-weight: 700;">MOST POPULAR</div>
+        <h3>🏆 Apex Plus Pro</h3>
+        <p>Everything in Plus, plus cloud gaming, exclusive discounts, early access to new releases, and priority customer support.</p>
+        <div style="margin-top: 20px; font-size: 32px; font-weight: 800; color: #667eea;">$14.99/mo</div>
+      </div>
+      <div class="card">
+        <h3>👑 Apex Ultimate</h3>
+        <p>The complete experience. All games, all features, VIP tournaments, exclusive merchandise, and direct developer access.</p>
+        <div style="margin-top: 20px; font-size: 32px; font-weight: 800; color: #667eea;">$24.99/mo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <h2 class="section-title">Community Reviews</h2>
+  <div class="grid-3">
+    <div class="card">
+      <div style="color: #667eea; font-size: 24px; margin-bottom: 16px;">★★★★★</div>
+      <p style="font-style: italic; margin-bottom: 16px;">"The graphics are absolutely stunning. I can't believe how smooth everything runs. This is next-gen gaming done right."</p>
+      <div style="font-weight: 600;">— Alex M., Verified Owner</div>
+    </div>
+    <div class="card">
+      <div style="color: #667eea; font-size: 24px; margin-bottom: 16px;">★★★★★</div>
+      <p style="font-style: italic; margin-bottom: 16px;">"Loading times are basically non-existent. The controller feels premium and the haptic feedback is incredible."</p>
+      <div style="font-weight: 600;">— Sarah K., Pro Gamer</div>
+    </div>
+    <div class="card">
+      <div style="color: #667eea; font-size: 24px; margin-bottom: 16px;">★★★★★</div>
+      <p style="font-style: italic; margin-bottom: 16px;">"Best console I've ever owned. The game library is massive and the performance is unmatched. Worth every penny."</p>
+      <div style="font-weight: 600;">— Marcus T., Content Creator</div>
+    </div>
+  </div>
+</section>
+
+<section class="section container">
+  <div class="card" style="text-align: center;">
+    <h2 style="font-size: 42px; margin-bottom: 20px;">Pre-Order Exclusive Bonuses</h2>
+    <p style="color: rgba(255,255,255,0.7); font-size: 18px; max-width: 800px; margin: 0 auto 40px;">Reserve your Apex Console today and receive limited-edition launch bonuses worth over $200.</p>
+    <div class="grid-3" style="text-align: left; margin-top: 40px;">
+      <div style="padding: 24px; background: rgba(102, 126, 234, 0.1); border-radius: 12px;">
+        <div style="font-size: 36px; margin-bottom: 12px;">🎮</div>
+        <h4 style="font-size: 18px; margin-bottom: 8px;">Limited Edition Controller</h4>
+        <p style="font-size: 14px; color: rgba(255,255,255,0.7);">Exclusive chrome finish with custom RGB lighting</p>
+      </div>
+      <div style="padding: 24px; background: rgba(102, 126, 234, 0.1); border-radius: 12px;">
+        <div style="font-size: 36px; margin-bottom: 12px;">🎁</div>
+        <h4 style="font-size: 18px; margin-bottom: 8px;">3 Launch Games</h4>
+        <p style="font-size: 14px; color: rgba(255,255,255,0.7);">Choose from our exclusive launch lineup</p>
+      </div>
+      <div style="padding: 24px; background: rgba(102, 126, 234, 0.1); border-radius: 12px;">
+        <div style="font-size: 36px; margin-bottom: 12px;">⭐</div>
+        <h4 style="font-size: 18px; margin-bottom: 8px;">6 Months Apex Plus</h4>
+        <p style="font-size: 14px; color: rgba(255,255,255,0.7);">Free membership with monthly games</p>
+      </div>
+    </div>
+    <div style="margin-top: 48px;">
+      <a class="btn" href="game.html" style="font-size: 18px; padding: 16px 40px;">Pre-Order Now - $499</a>
+      <p style="margin-top: 16px; font-size: 14px; color: rgba(255,255,255,0.5);">🚚 Free shipping • 💳 Pay later options available • 🔒 Secure checkout</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section container">
+  <div class="card">
+    <h3>Contact Us</h3>
+    <p>Have questions, feedback, or a partnership inquiry? We're ready to listen. Reach out and connect with the team behind Apex Console.</p>
+    <form id="contact-form" style="margin-top:16px;display:grid;gap:12px;">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+      </div>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <div>© 2025 Apex Console. All rights reserved.</div>
+    <div style="display:flex;gap:12px;align-items:center"><span class="badge">Premium • Instant • Elite</span></div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+
+
+
+<style>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal-content-age {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content-age h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.modal-content-age p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 32px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+</style>
+
+<script>
+// Age verification modal
+const ageModal = document.querySelector('[data-age-modal]');
+const ageConfirm = document.querySelector('[data-age-confirm]');
+const ageDeny = document.querySelector('[data-age-deny]');
+
+// Check if user has already verified age
+if (localStorage.getItem('ageVerified') === 'true') {
+  ageModal.style.display = 'none';
+}
+
+if (ageConfirm) {
+  ageConfirm.addEventListener('click', () => {
+    localStorage.setItem('ageVerified', 'true');
+    ageModal.style.display = 'none';
+  });
+}
+
+if (ageDeny) {
+  ageDeny.addEventListener('click', () => {
+    window.location.href = 'https://www.google.com';
+  });
+}
+</script>
+
+</body>
+</html>

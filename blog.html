@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="favicon.svg">
+<title>Blog — Apex Console</title>
+<meta name="description" content="Insights and articles from the Apex Console team on next-generation gaming technology, industry trends, and developer insights.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.menu {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.menu a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.menu a:hover {
+  color: #fff;
+}
+
+.btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.btn.ghost:hover {
+  border-color: #667eea;
+}
+
+.hero {
+  padding: 180px 40px 80px;
+  text-align: center;
+  background: radial-gradient(ellipse at top, rgba(102, 126, 234, 0.15), transparent 70%);
+}
+
+.hero h1 {
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.section {
+  padding: 80px 40px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+
+.blog-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.meta {
+  font-size: 14px;
+  color: #667eea;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.excerpt {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.read {
+  margin-top: 16px;
+}
+
+.badge {
+  padding: 8px 16px;
+  background: rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.footer {
+  padding: 60px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+  
+  .menu {
+    display: none;
+  }
+  
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="index.html" aria-label="Home">
+      <img src="assets/img/logo.svg" alt="Apex Console icon">
+      <span>Apex Console</span>
+    </a>
+    <div class="menu" data-nav-menu>
+      <a href="index.html">Home</a>
+      <a href="game.html">Play Game</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="about.html">About</a>
+      <a href="blog.html" style='opacity:1;font-weight:800'>Blog</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="right">
+      <a class="btn ghost" data-nav-toggle>Menu</a>
+      <a class="btn" href="game.html">Play</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <h1>Blog</h1>
+    <p>Insights on building the future of gaming technology, hardware innovations, and the next-generation console experience.</p>
+  </div>
+</header>
+
+<section class="section container">
+  <div class="blog-grid">
+    <div class="card blog-card">
+      <h3>The Future of 8K Gaming</h3>
+      <div class="meta">How Apex Console achieves native 8K at 120fps</div>
+      <p class="excerpt">Explore the breakthrough engineering behind our custom GPU architecture and how we're pushing the boundaries of visual fidelity without compromising performance.</p>
+      <a class="btn ghost read" href="posts/why-runner-works.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>Ray Tracing Without Compromise</h3>
+      <div class="meta">Real-time lighting that transforms gameplay</div>
+      <p class="excerpt">Discover how our advanced ray tracing implementation delivers cinematic visuals while maintaining smooth framerates, creating the most immersive gaming experiences.</p>
+      <a class="btn ghost read" href="posts/mobile-first-design.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>Designing the Adaptive Controller</h3>
+      <div class="meta">Haptic feedback that brings games to life</div>
+      <p class="excerpt">Learn how our engineering team created revolutionary haptic technology that lets you feel every action, from the tension of a bowstring to the roar of an engine.</p>
+      <a class="btn ghost read" href="posts/difficulty-curves.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>The SSD Revolution</h3>
+      <div class="meta">Why loading screens are history</div>
+      <p class="excerpt">Deep dive into our ultra-fast storage architecture that enables instant game loads, seamless world streaming, and eliminates the traditional loading experience.</p>
+      <a class="btn ghost read" href="posts/sound-and-feedback.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>Building an Inclusive Gaming Platform</h3>
+      <div class="meta">Accessibility features that matter</div>
+      <p class="excerpt">Explore how we're making gaming accessible to everyone through customizable controls, visual aids, audio descriptions, and adaptive difficulty systems.</p>
+      <a class="btn ghost read" href="posts/session-length.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>Cloud Gaming Done Right</h3>
+      <div class="meta">Play anywhere without latency</div>
+      <p class="excerpt">Discover our approach to cloud gaming that delivers console-quality experiences with minimal latency, letting you pick up where you left off on any device.</p>
+      <a class="btn ghost read" href="posts/retro-vibes.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>Thermal Engineering Marvel</h3>
+      <div class="meta">Silent operation, maximum performance</div>
+      <p class="excerpt">Learn about the innovative cooling system that keeps Apex Console whisper-quiet even during the most demanding gaming sessions without thermal throttling.</p>
+      <a class="btn ghost read" href="posts/why-runner-works.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>The Developer Experience</h3>
+      <div class="meta">Tools that empower game creators</div>
+      <p class="excerpt">See how our developer platform and comprehensive SDK make it easier than ever to create stunning games that take full advantage of Apex Console's capabilities.</p>
+      <a class="btn ghost read" href="posts/mobile-first-design.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>3D Audio Technology Explained</h3>
+      <div class="meta">Immersive soundscapes that surround you</div>
+      <p class="excerpt">Understand how our spatial audio engine creates realistic 3D soundscapes that let you hear every footstep, every whisper, and every explosion with pinpoint accuracy.</p>
+      <a class="btn ghost read" href="posts/difficulty-curves.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>Sustainable Gaming Hardware</h3>
+      <div class="meta">Power efficiency meets performance</div>
+      <p class="excerpt">Discover our commitment to environmental responsibility through energy-efficient design, recyclable materials, and a reduced carbon footprint throughout production.</p>
+      <a class="btn ghost read" href="posts/sound-and-feedback.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>The Art of Game Preservation</h3>
+      <div class="meta">Playing classics with modern enhancements</div>
+      <p class="excerpt">Learn how our backward compatibility technology not only runs classic games but enhances them with improved framerates, resolution, and visual fidelity.</p>
+      <a class="btn ghost read" href="posts/session-length.html">Read article</a>
+    </div>
+
+    <div class="card blog-card">
+      <h3>Multiplayer Infrastructure at Scale</h3>
+      <div class="meta">Global gaming with zero lag</div>
+      <p class="excerpt">Explore the network architecture that powers seamless multiplayer experiences across continents with dedicated servers and intelligent matchmaking systems.</p>
+      <a class="btn ghost read" href="posts/retro-vibes.html">Read article</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <div>© 2025 Apex Console. All rights reserved.</div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <span class="badge">Premium • Instant • Elite</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
